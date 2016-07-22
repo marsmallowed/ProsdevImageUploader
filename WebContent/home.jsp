@@ -65,7 +65,7 @@
                         	  out.println("<img class=\"activator\" src=ViewImageServlet?id=" + myPictures.get(i).getId() + ">");
                         	  out.println("</div>");
                         	  out.println("<div class=\"card-content\">");
-                        	  out.println("<span class=\"card-title activator grey-text text-darken-4\">Card Title<i class=\"material-icons right\">more_vert</i></span>");
+                        	  out.println("<span class=\"card-title activator grey-text text-darken-4\">Image Description<i class=\"material-icons right\">more_vert</i></span>");
                         	  out.println("</div>");
                         	  out.println("<div class=\"card-reveal\">");
                         	  out.println("<span class=\"card-title grey-text text-darken-4\">Card Title<i class=\"material-icons right\">close</i></span>");
