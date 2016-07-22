@@ -1,7 +1,6 @@
 package model.dto;
 
-import java.io.File;
-import java.io.FileInputStream;
+
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,20 +11,21 @@ import model.db.DBConnection;
 
 public class PictureManager {
 	
-	public boolean uploadPicture(String username, FileInputStream input, File imgfile ,String caption)
+	public boolean uploadPicture(String username, InputStream input, String caption, long size)
 	{
 		int count = 0;
 		try {
             Connection conn = DBConnection.getConnection();
             
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO image (image, desc, userid) values (?, ?, ?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO image (description, userid, image) values (?, ?, ?)");
 
+            pstmt.setString(1, caption);
+            pstmt.setString(2, username);
+            System.out.println("input = " + input);
             if (input != null) {
-            	pstmt.setBinaryStream(1,input,(int)imgfile.length());
+            	pstmt.setBlob(3, input, size);
             }
-            pstmt.setString(2, caption);
-            pstmt.setString(3, username);
-
+            
             count = pstmt.executeUpdate();
 			conn.close();
 			pstmt.close();

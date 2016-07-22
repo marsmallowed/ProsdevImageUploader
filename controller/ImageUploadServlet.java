@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import controller.Controller;
 
 import model.dto.Picture;
 
@@ -45,26 +46,33 @@ public class ImageUploadServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		 InputStream input = null;
-//		 Part filePart = request.getPart("photo");
-		String strpath = request.getParameter("photo");
-		File imgfile = new File(strpath);
-		FileInputStream fin = new FileInputStream(imgfile);
-		 String caption = request.getParameter("caption");
-//		 if(filePart != null)
-//		 {
-//			 System.out.println(filePart.getName());
-//	         System.out.println(filePart.getSize());
-//	         System.out.println(filePart.getContentType());
-//	         
-//	         //check ContentType if jpeg or png
-//	         if(filePart.getContentType().equals("image/png") || filePart.getContentType().equals("image/jpg"))
-//	        	 input = filePart.getInputStream();
-//	         
-//		 }
+		 InputStream input = null;
+		 Part filePart = request.getPart("photo");
+		 long size = 0;
+		 //File file= request.getPart("photo");
+		 //FileInputStream inputStream= new FileInputStream(file);
+
+		 //PreparedStatement statement = connection.prepareStatement("INSERT INTO yourTable (yourBlob) VALUES (?)");
+		 //statement.setBlob(1, inputStream);
+//		 String caption = request.getParameter("caption");
+		 String caption = "Sample caption";
+		 if(filePart != null)
+		 {
+			 System.out.println(filePart.getName());
+	         System.out.println(filePart.getSize());
+	         System.out.println(filePart.getContentType());
+	         size = filePart.getSize();
+	         //check ContentType if jpeg or png
+	         if(filePart.getContentType().equals("image/png") || filePart.getContentType().equals("image/jpg") || filePart.getContentType().equals("image/jpeg")){
+	        	 input = (FileInputStream) filePart.getInputStream();
+	        	 System.out.println("in image check");
+	         }
+	        	 
+	         
+		 }
 		 
-//		 if(input != null)
-			 if(Controller.getController().uploadPicture(fin, imgfile, caption))
+		 if(input != null)
+			 if(Controller.getController().uploadPicture(input, caption, size))
 				 System.out.println("Success upload");
 		 
 		 ArrayList<Picture> myPictures = Controller.getPictures();

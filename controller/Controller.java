@@ -43,9 +43,11 @@ public class Controller {
 		return pictureManager.getPictures(user.getUsername());
 	}
 	
-	public Boolean uploadPicture(FileInputStream input, File imgfile, String caption)
+	public Boolean uploadPicture(InputStream input, String caption, long size)
 	{
-		pictureManager.uploadPicture(user.getUsername(), input, imgfile, caption);
-		return null;
+		if(pictureManager.uploadPicture(user.getUsername(), input, caption, size))
+			return true;
+		else
+			return false;
 	}
 }
