@@ -20,7 +20,7 @@ public class UserManager {
 			
 			Connection conn = DBConnection.getConnection();
 			
-			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM users WHERE username = ? AND password = ?");
+			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM user WHERE user_id = ? AND user_pw = ?");
 			
 			pstmt.setString(1, username);
 			pstmt.setString(2, password);
@@ -69,13 +69,12 @@ public class UserManager {
 	}
 	
 	public boolean registerUser(User user){
-		//INSERT INTO `db_image_uploader`.`user` (`username`, `password`) VALUES ('teddyian', 'password');
 		int count = 0;
 		
 		try{
 			Connection conn = DBConnection.getConnection();
 			
-			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO `db_image_uploader`.`user` (`username`, `password`) VALUES (?, ?)");
+			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO user (user_id, user_pw) VALUES (?, ?)");
 			
 			pstmt.setString(1, user.getUsername());
 			pstmt.setString(2, user.getPassword());
@@ -87,6 +86,12 @@ public class UserManager {
 			e.printStackTrace();
 		}
 		return (count > 0);
+	}
+	
+	public boolean checkUser(String username)
+	{
+		//TODO check if username is available or not
+		return false;
 	}
 
 }

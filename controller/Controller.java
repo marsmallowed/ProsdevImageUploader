@@ -1,54 +1,51 @@
 package controller;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
 
+import model.dto.Picture;
+import model.dto.PictureManager;
+import model.dto.User;
 import model.dto.UserManager;
 
-/**
- * Servlet implementation class Controller
- */
-@WebServlet("/Controller")
-public class Controller extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Controller() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+public class Controller {
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		process(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		process(request, response);
+	private static User user;
+	private static Controller controller;
+	private UserManager userManager = new UserManager();
+	private static PictureManager pictureManager = new PictureManager();
+	
+	public static Controller getController(){
+		if(controller == null){
+			controller = new Controller();
+		}
+		return controller;
 	}
 	
-	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = request.getParameter("url");
+	public Boolean loginAccount(String username, String password)
+	{
+		user = userManager.getUserLogin(username, password);
 		
-		switch(url){
-//			case "login": User user = new UserManager().getUserLogin(request.getParameter("username"), request.getParameter("password"));
-//						Gson g = new Gson();
-//						String userJson = g.toJson(user);
-//						response.getWriter().write(userJson);
-//						break;
-//			case "register": response.getWriter().write(new Gson().toJson(new UserManager().registerUser(new User(request.getParameter(User.COLUMN_FNAME), request.getParameter(User.COLUMN_LNAME), request.getParameter(User.COLUMN_USERNAME), request.getParameter(User.COLUMN_EMAIL), request.getParameter(User.COLUMN_PASSWORD), request.getParameter(User.COLUMN_NUMBER)))));
-//						break;
-		}
+		if(user.getPassword() != null && user.getUsername() != null)
+			return true;
+		return false;
+	}
+	
+	public User getUser()
+	{
+		return user;
+	}
+	
+	public static ArrayList<Picture>  getPictures()
+	{
+		return pictureManager.getPictures(user.getUsername());
+	}
+	
+	public Boolean uploadPicture(FileInputStream input, File imgfile, String caption)
+	{
+		pictureManager.uploadPicture(user.getUsername(), input, imgfile, caption);
+		return null;
 	}
 }

@@ -29,16 +29,18 @@
 		<div class="row">		
 			<div class="col s12">
 						<div class="card-panel z-depth-1" >
+						<form action = "LoginServlet" name="login" novalidate method = "post" >
                             <a><font size="6">Log In</font></a>
                             <p>
-                               <input placeholder="Username" id="user_name" type="text" class="validate">
+                               <input placeholder="Username" id="username" name="username" type="text" class="validate, form-control">
                             </p>
 
 
                             <p>
-                                <input placeholder="Password" id="password" type="password" class="validate">
+                                <input placeholder="Password" id="password" name="password" type="password" class="validate, form-control">
                             </p>
-                            <a class="waves-effect waves-light blue btn-large" id="login">Log In</a>
+                            <button  type="submit" class="waves-effect waves-light blue btn-large" value = "submit">Log In</button>
+                         </form>
                         </div>
 			</div>
             
@@ -46,18 +48,25 @@
             
             <div class="col s12" id="bottom">
 						<div class="card-panel blue lighten-5 z-depth-1" >
+						<form action = "RegisterServlet" name="signup" novalidate method = "post" >
                             <p>
                                <a><font size="6">Sign Up</font></a>
                             </p>
                             <p>
-                               <input placeholder="Username" id="user_name2" type="text" class="validate">
+                               <input placeholder="Username" name="username" id="user_name2" type="text" class="validate">
                             </p>
 
 
                             <p>
-                                <input placeholder="Password" id="password2" type="password" class="validate">
+                                <input placeholder="Password" name="password" id="password2" type="password" class="validate">
                             </p>
-                            <a class="waves-effect waves-light blue btn-large" id="signup">Sign Up</a>
+                            
+                            <p>
+                                <input placeholder="Re-type Password" name="cfmpassword" id="password2" type="password" class="validate">
+                            </p>
+                            
+                           <button  type="submit" class="waves-effect waves-light blue btn-large" value = "submit">Sign Up</button>
+                            </form>
 						</div>
 			</div>
 		</div>

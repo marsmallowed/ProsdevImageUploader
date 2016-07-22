@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `db_image_uploader` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `db_image_uploader`;
--- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
 --
 -- Host: localhost    Database: db_image_uploader
 -- ------------------------------------------------------
--- Server version	5.6.19
+-- Server version	5.6.22-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,9 +26,9 @@ DROP TABLE IF EXISTS `image`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `image` (
   `id` int(11) NOT NULL,
-  `image` blob,
+  `image` blob NOT NULL,
   `desc` varchar(250) DEFAULT NULL,
-  `userid` varchar(30) DEFAULT NULL,
+  `userid` varchar(30) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `userid_idx` (`userid`),
   CONSTRAINT `userid` FOREIGN KEY (`userid`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -53,7 +53,7 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `user_id` varchar(30) NOT NULL,
-  `user_pw` varchar(45) DEFAULT NULL,
+  `user_pw` varchar(45) NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -76,4 +76,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-21 18:11:26
+-- Dump completed on 2016-07-22 12:00:42

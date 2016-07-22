@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@page import ="model.dto.User, model.dto.Picture, java.util.ArrayList"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
   <html>
     <head>
@@ -27,56 +29,43 @@
           
             <div class="row">		
                 <div class="col s12">
-                             <form action="#">
+                             <form name="fileform" method="post" action="ImageUploadServlet"  enctype="multipart/form-data">
                                 <div class="file-field input-field col s10">
                                   <div class="btn blue-grey lighten-4 ">
                                     <span><font size = "5">+</font></span>
-                                    <input type="file" multiple>
+                                    <input type="file" name="photo" class="form-control">
                                   </div>
                                   <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                                    <input class="file-path validate, form-control" type="text" placeholder="Upload one or more files">
                                   </div>
                                 </div>
                                  <div class = "col s2">
                                      <br>
-                                     <a class="waves-effect waves-light blue btn-large right" id="Post">Post</a>
+                                     <button  type="submit" class="waves-effect waves-light blue btn-large" value = "submit">Post</button>
                                  </div>
-                                
                             </form>
                 </div>
                 </div>
-                        <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" src="adventure-time.jpg">
-                            </div>
-                            <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span> 
-                            </div>
-                            <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                              <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                            </div>
-                          </div>
-            
-                        <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" src="cool-dogs.JPG">
-                            </div>
-                            <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                            </div>
-                            <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                              <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                            </div>
-                          </div>
-            
-
-            
-        </div>
-		
-		
-
+                        <%User user =  (User) session.getAttribute("user"); 
+                          ArrayList<Picture> myPictures = (ArrayList<Picture>) session.getAttribute("myPictures");
+                          int size = myPictures.size();
+                          
+                          for(int i = 0; i < size; i++)
+                          {
+                        	  out.println("<div class=\"card\">");
+                        	  out.println("<div class=\"card-image waves-effect waves-block waves-light\">");  
+                        	  out.println("<img class=\"activator\" src=" + myPictures.get(i).getSrc() + ">");
+                        	  out.println("</div>");
+                        	  out.println("<div class=\"card-content\">");
+                        	  out.println("<span class=\"card-title activator grey-text text-darken-4\">Card Title<i class=\"material-icons right\">more_vert</i></span>");
+                        	  out.println("</div");
+                        	  out.println("<div class=\"card-reveal\">");
+                        	  out.println("<span class=\"card-title grey-text text-darken-4\">Card Title<i class=\"material-icons right\">close</i></span>");
+                        	  out.println("<p>" + myPictures.get(i).getCaption() + "</p>");
+                        	  out.println("</div>  </div>");
+                          }
+                        %>
+		</div>
     </body>
   </html>
 

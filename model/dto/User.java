@@ -2,8 +2,8 @@ package model.dto;
 
 public class User {
 	
-	public static String COLUMN_USERNAME = "username";
-    public static String COLUMN_PASSWORD = "password";
+	public static String COLUMN_USERNAME = "user_id";
+    public static String COLUMN_PASSWORD = "user_pw";
     
 	private String username;
 	private String password;
@@ -30,5 +30,10 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public Boolean addPhoto()
+	{
+		return true;
 	}
 }
