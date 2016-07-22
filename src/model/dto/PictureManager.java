@@ -93,5 +93,33 @@ public class PictureManager {
 		
 		return pictureList;
 	}
+	
+	public boolean deletePicture(int id)
+	{
+		ArrayList<Picture> pictureList = new ArrayList<>();
+		
+		try {
+            Connection conn = DBConnection.getConnection();
+            
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM image WHERE id = ?");
+
+            pstmt.setInt(1, id);
+        
+            int row = pstmt.executeUpdate();
+            
+//            while(rs.next()){
+//				pictureList.add(new Picture(rs.getInt("id"), rs.getString("userid"), rs.getString("description"), rs.getBlob("image")));
+//			}
+            
+			conn.close();
+			pstmt.close();
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
 
 }

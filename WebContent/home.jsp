@@ -47,6 +47,7 @@
                                  <div class="col s10">
 									<input placeholder="Add description" name="description" type="text" >
 								 </div>
+								 
                             </form>
                             
                 </div>
@@ -70,7 +71,14 @@
                         	  out.println("<div class=\"card-reveal\">");
                         	  out.println("<span class=\"card-title grey-text text-darken-4\">Card Title<i class=\"material-icons right\">close</i></span>");
                         	  out.println("<p>" + myPictures.get(i).getCaption() + "</p>");
-                        	  out.println("</div>  </div>");
+                        	  out.println("<form name =\"deleteImage\" method=\"GET\" action=\"DeleteServlet\">");
+							  out.println("<input type = \"hidden\" name=\"id\" value= " + myPictures.get(i).getId() +">");
+                        	  out.println("<a class = \"waves-effect waves-light blue btn-large right\" onclick=\"$(this).closest('form').submit()\">Delete this Photo</a>");
+                        	  out.println("</form>");
+                        	  out.println("</div> </div>");
+                        	  
+							  
+                        	  
                           }
                         %>
 		</div>
