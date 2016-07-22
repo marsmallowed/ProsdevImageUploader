@@ -44,7 +44,11 @@
                                      <br>
                                      <button  type="submit" class="waves-effect waves-light blue btn-large" value = "submit">Post</button>
                                  </div>
+                                 <div class="col s10">
+									<input placeholder="Add description" name="description" type="text" >
+								 </div>
                             </form>
+                            
                 </div>
                 </div>
                 

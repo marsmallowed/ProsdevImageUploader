@@ -54,10 +54,11 @@ public class ImageUploadServlet extends HttpServlet {
 
 		 //PreparedStatement statement = connection.prepareStatement("INSERT INTO yourTable (yourBlob) VALUES (?)");
 		 //statement.setBlob(1, inputStream);
-//		 String caption = request.getParameter("caption");
-		 String caption = "Sample caption";
+		 String caption = request.getParameter("description");
+//		 String caption = "Sample caption";
 		 if(filePart != null)
-		 {
+		 {	
+			 System.out.println(caption);
 			 System.out.println(filePart.getName());
 	         System.out.println(filePart.getSize());
 	         System.out.println(filePart.getContentType());
