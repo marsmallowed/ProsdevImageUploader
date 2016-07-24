@@ -1,0 +1,19 @@
+Updated User Stories
+1.	As a photographer, I want an uploader that supports jpeg files so that I could easily upload photos from my phone or computer.
+2.	As a graphic artist, I want an uploader that supports png files so that I could upload images with various transparencies.
+3.	As a celebrity, I want to be able to delete my photos so that I could be able to remove any potential pictures that may cause controversies.
+4.	As a blogger, I want to be able to add a description to images I upload so that I can be reminded of what the picture meant when I uploaded it.
+5.	As a selfie enthusiast, I want to be able to view the images that I have uploaded so that I can avoid uploading the same image twice.
+
+RCA
+Problem:									
+We weren't able to implement the multiple image upload user story.									
+Why 1: Because we started late so we didn't have enough time									
+Why 2: Because we took time reviewing how to code web applications									
+Why 3: Because it has been a year since we last practiced web programming in class	Why 3 - root cause
+Why 4: Because we prefer java development over web development for our class projects									
+Why 5: Because it is easier and we have been consistently using it for our classes the last 2 years. 									
+Action:									
+Practice web development (and other familiar platforms) once in a while by solving problems or creating applications for fun to maintain/improve our programming skills.
+
+									
